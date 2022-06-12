@@ -1,25 +1,16 @@
-import React from 'react'
+import { memo } from "react";
 
-export default function Todos(props) {
+const Todos = ({ todos, addTodo }) => {
+  console.log("Renderizando o componente filho");
+  return (
+    <>
+      <h2>My Todos</h2>
+      {todos.map((todo, index) => {
+        return <p key={index}>{todo}</p>;
+      })}
+      <button onClick={addTodo}>Add Todo</button>
+    </>
+  );
+};
 
-    console.log("Renderização do componente FILHO!")
-
-    return (
-        <div>
-            <h4>Minha lista de afazeres</h4>
-            {
-                props.todos.map(
-                    (todo, index) => {
-                        return (
-                            <p key={index}>
-                                (todo)
-                            </p>
-                        )
-                    }
-                )
-            }
-            <button onClick={props.addTodo}>Cadastrar</button>
-
-        </div>
-    )
-}
+export default memo(Todos);

@@ -1,40 +1,33 @@
 /* Serve para verificar o comportamento do Callback */
-import { useState, useCallback } from 'react'
+import { useState, useCallback } from "react";
+import Todos from "./Todos";
 
-import Todos from './Todos'
+const TodoListCallback = () => {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState([]);
 
-export default function TodoList() {
-    const [todoCount, setTodoCount] = useState(0)
-    const [todos, setTodos] = useState([])
+  console.log('Renderizado o componente pai')
+												 
+										  
 
-    console.log("Renderização do componente PAI")
+  const increment = () => {
+    setCount((c) => c + 1);
+  };
+  
+  const addTodo = useCallback(() => {
+    setTodos((t) => [...t, "New Todo"]);
+  }, [todos]);
 
-    const incrementTodoCount = () => {
-        setTodoCount(todoCount + 1)
-    }
+  return (
+    <>
+      <Todos todos={todos} addTodo={addTodo} />
+      <hr />
+      <div>
+        Count: {count}
+        <button onClick={increment}>+</button>
+      </div>
+    </>
+  );
+};
 
-    /* const addTodo = () => {
-        setTodos(
-            (todosArray) => [...todosArray, "Nova tarefa"]
-        )
-    } */
-
-    const addTodo = useCallback(
-        () => {
-            setTodos(
-                (todosArray) => [...todosArray, "Nova tarefa"]
-            )
-        }, [todos]
-    )
-
-    return (
-        <div>
-            <Todos todos={todos} addTodo={addTodo} />
-            <div>
-                <p>Contador de tarefas: {todoCount}</p>
-                <button onClick={incrementTodoCount}>+</button>
-            </div>
-        </div>
-    )
-}
-
+export default TodoListCallback

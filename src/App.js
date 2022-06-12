@@ -15,9 +15,9 @@ function App() {
       <UseStateFunction />
       <UseStateLazy />
       <UsePrevState /> */}
-      <UseStateObject />
+{/*       <UseStateObject />
       <UseEffectClass />
-      <UseEffectFunction />
+      <UseEffectFunction /> */}
       <TodoList />
     </div>
   );
